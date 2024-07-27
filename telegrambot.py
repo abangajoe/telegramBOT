@@ -3,8 +3,9 @@ import telepot
 from telepot.loop import MessageLoop
 from keep_alive import keep_alive
 
-# Define the token
-TOKEN = os.environ.get('7135600634:AAGiMAyfJ5HCnAqaVTcQH4Zj3GzhH10_szU')
+# Define the token directly or get from environment variables
+# TOKEN = os.environ.get('YOUR_ENV_VARIABLE_NAME')
+TOKEN = '7135600634:AAGiMAyfJ5HCnAqaVTcQH4Zj3GzhH10_szU'  # Replace this with your actual bot token
 
 # Define the start command handler
 def handle(msg):
@@ -12,7 +13,7 @@ def handle(msg):
 
     if content_type == 'text':
         if msg['text'] == '/start':
-            bot.sendMessage(chat_id, "Hello! I'm Gunther Bot, pleased to meet you!")
+            bot.sendMessage(chat_id, "Hello! I'm Joe Bot, pleased to meet you!")
         else:
             bot.sendMessage(chat_id, "I don't understand this command.")
 
