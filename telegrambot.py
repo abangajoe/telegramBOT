@@ -1,19 +1,31 @@
 import os
-from telegram import Bot, Update
-from telegram.ext import CommandHandler, Dispatcher, Updater
+import telepot
+from telepot.loop import MessageLoop
 from keep_alive import keep_alive
 
+# Define the token
+TOKEN = os.environ.get('7135600634:AAGiMAyfJ5HCnAqaVTcQH4Zj3GzhH10_szU')
+
+# Define the start command handler
+def handle(msg):
+    content_type, chat_type, chat_id = telepot.glance(msg)
+
+    if content_type == 'text':
+        if msg['text'] == '/start':
+            bot.sendMessage(chat_id, "Hello! I'm Gunther Bot, pleased to meet you!")
+        else:
+            bot.sendMessage(chat_id, "I don't understand this command.")
+
+# Create the bot instance
+bot = telepot.Bot(TOKEN)
+
+# Start the message loop
+MessageLoop(bot, handle).run_as_thread()
+
+# Keep the bot running
 keep_alive()
 
-bot = Bot(token=os.environ.get('7135600634:AAGiMAyfJ5HCnAqaVTcQH4Zj3GzhH10_szU'))
-updater = Updater(bot=bot, use_context=True)
-dispatcher = updater.dispatcher
-
-def start(update: Update, context):
-    context.bot.send_message(chat_id=update.effective_chat.id, text="Hello! I'm your Telegram bot.")
-
-start_handler = CommandHandler('start', start)
-dispatcher.add_handler(start_handler)
-
-if __name__ == '__main__':
-    updater.start_polling()
+# Keep the program running
+import time
+while True:
+    time.sleep(10)
