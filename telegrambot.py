@@ -44,7 +44,7 @@ pdf_files = {
 }
 
 video_files = {
-    "lauren daigle": "Lauren Daigle - You Say (Official Music Video).mp4",
+    "lauren daigle": "files/Lauren Daigle - You Say (Official Music Video).mp4",
 }
 
 def handle(msg):
