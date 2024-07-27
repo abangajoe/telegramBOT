@@ -5,8 +5,8 @@ from telepot.loop import MessageLoop
 from keep_alive import keep_alive
 
 logging.basicConfig(level=logging.INFO)
-bot = telepot.Bot(TOKEN)
 TOKEN = '7135600634:AAGiMAyfJ5HCnAqaVTcQH4Zj3GzhH10_szU'
+bot = telepot.Bot(TOKEN)
 
 pdf_files = {
     "effective prayer": "Effective Prayer - Charles Spurgeon.pdf",
