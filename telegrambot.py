@@ -24,7 +24,7 @@ def handle(msg):
             text = msg['text'].lower()
 
             if text in ["hi", "hello", "hey"]:
-                bot.sendMessage(chat_id, "Hey Akwaaba to AGCM Library Hope You`re fine. How may I help you")
+                bot.sendMessage(chat_id, "This is Umat AGCM bot. How may I help you")
                 
             elif text == "/list_pdfs":
                 pdf_list = "\n".join(pdf_files.keys())
