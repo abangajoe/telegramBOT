@@ -1,26 +1,57 @@
 import os
 import telepot
+import logging
 from telepot.loop import MessageLoop
 from keep_alive import keep_alive
 
-# Define the token directly or get from environment variables
-# TOKEN = os.environ.get('YOUR_ENV_VARIABLE_NAME')
-TOKEN = '7135600634:AAGiMAyfJ5HCnAqaVTcQH4Zj3GzhH10_szU'  # Replace this with your actual bot token
+logging.basicConfig(level=logging.INFO)
+bot = telepot.Bot(TOKEN)
+TOKEN = '7135600634:AAGiMAyfJ5HCnAqaVTcQH4Zj3GzhH10_szU'
 
-# Define the start command handler
+pdf_files = {
+    "effective prayer": "Effective Prayer - Charles Spurgeon.pdf",
+}
+
+video_files = {
+    "lauren daigle": "Lauren Daigle - You Say (Official Music Video).mp4",
+}
+
 def handle(msg):
     content_type, chat_type, chat_id = telepot.glance(msg)
 
-    if content_type == 'text':
-        if msg['text'] == '/start':
-            bot.sendMessage(chat_id, "Hello! I'm Joe Bot, pleased to meet you!")
-        else:
-            bot.sendMessage(chat_id, "I don't understand this command.")
+    try:
+        if content_type == 'text':
+            text = msg['text'].lower()
 
-# Create the bot instance
-bot = telepot.Bot(TOKEN)
+            if text in ["hi", "hello", "hey"]:
+                bot.sendMessage(chat_id, "Hey Akwaaba to AGCM Library Hope You`re fine. How may I help you")
+                
+            elif text == "/list_pdfs":
+                pdf_list = "\n".join(pdf_files.keys())
+                bot.sendMessage(chat_id, "YOU CAN ACCESS THE FOLLOWING BOOKS:\n" + pdf_list) 
+                
+            elif text == "/list_videos":
+                video_list = "\n".join(video_files.keys())
+                bot.sendMessage(chat_id, "YOU CAN ACCESS THE FOLLOWING VIDEOS:\n" + video_list)
+                
+            elif text in pdf_files:
+                bot.sendDocument(chat_id, open(pdf_files[text], 'rb'))
+                
+            elif text in audio_files:
+                bot.sendAudio(chat_id, open(audio_files[text], 'rb'))
+                
+            elif text in video_files:
+                bot.sendVideo(chat_id, open(video_files[text], 'rb'))
+                
+            else:
+                bot.sendMessage(chat_id, "I'm a limitted bot, Please try again with familiar commands.")
 
-# Start the message loop
+
+    except Exception as e:
+        logging.error(f"Error handling message: {e}")
+        bot.sendMessage(chat_id, "An error occurred while processing your request. Please try again later.")
+
+
 MessageLoop(bot, handle).run_as_thread()
 
 # Keep the bot running
