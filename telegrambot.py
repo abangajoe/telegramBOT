@@ -5,8 +5,7 @@ from keep_alive import keep_alive
 
 keep_alive()
 
-TOKEN = '7135600634:AAGiMAyfJ5HCnAqaVTcQH4Zj3GzhH10_szU'
-bot = Bot(token=os.environ.get('TOKEN'))
+bot = Bot(token=os.environ.get('7135600634:AAGiMAyfJ5HCnAqaVTcQH4Zj3GzhH10_szU'))
 updater = Updater(bot=bot, use_context=True)
 dispatcher = updater.dispatcher
 
