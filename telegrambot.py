@@ -10,6 +10,8 @@ bot = telepot.Bot(TOKEN)
 
 pdf_files = {
     "effective prayer": "Effective Prayer - Charles Spurgeon.pdf",
+    "freedom from pornography":"files/Freedom From Pornography 25062024.pdf",
+
 }
 
 video_files = {
