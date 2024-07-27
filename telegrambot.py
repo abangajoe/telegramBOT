@@ -37,9 +37,6 @@ def handle(msg):
             elif text in pdf_files:
                 bot.sendDocument(chat_id, open(pdf_files[text], 'rb'))
                 
-            elif text in audio_files:
-                bot.sendAudio(chat_id, open(audio_files[text], 'rb'))
-                
             elif text in video_files:
                 bot.sendVideo(chat_id, open(video_files[text], 'rb'))
                 
